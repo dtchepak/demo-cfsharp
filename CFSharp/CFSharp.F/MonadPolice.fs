@@ -12,11 +12,11 @@ type ImDave =
 type MonadPolice(dave : ImDave, email : IEmailGateway) = 
     let _dave = dave
     let _email = email
+    let sendOutburst = _email.Send "xerxesb" "the monad police" "Lack of pragmatism detected"
     member this.Surveil() = 
         _dave.RecentRamblings()
             |> Seq.filter (contains "monad")
-            |> Seq.iter (fun outburstOfZealotry -> 
-                            _email.Send "xerxesb" "the monad police" "Lack of pragmatism detected" outburstOfZealotry)
+            |> Seq.iter sendOutburst
 
         (*
         let overheard = _dave.RecentRamblings()
