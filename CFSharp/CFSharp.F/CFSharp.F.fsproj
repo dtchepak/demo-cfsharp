@@ -66,6 +66,8 @@
     <Compile Include="TestHelper.fs" />
     <Compile Include="MonadPolice.fs" />
     <Compile Include="MonadPoliceTests.fs" />
+    <Compile Include="MonadPolice2.fs" />
+    <Compile Include="MonadPolice2Tests.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
