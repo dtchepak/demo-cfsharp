@@ -1,6 +1,7 @@
 ﻿module CFSharp.F.MonadPolice2
 
 open FSharpx.Strings
+open MonadPolice
 
 type TipOff =
     { sendTo : string
@@ -15,3 +16,8 @@ let surveil (talk : string seq) =
     talk
         |> Seq.filter isZealotry
         |> Seq.map (fun s -> { standardTipOff with msg=s })
+
+let sample (dave : ImDave) (email : IEmailGateway) =
+    dave.RecentRamblings() 
+        |> surveil
+        |> Seq.iter (fun x -> email.Send x.sendTo x.from x.subject x.msg)

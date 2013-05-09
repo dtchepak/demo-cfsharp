@@ -44,10 +44,10 @@ type MonadPoliceTests() =
             ; "blah blah blah haskell blah blah monad blah blah"
             ; "a cup of tea is a lot like the Maybe monad..." 
             ]
-        this._dave.RecentRamblings() |> Returns (Seq.ofList ramblings)
-
-        // Anonymous interface impl using Object Expressions
+        // Anonymous interface implementation using Object Expressions
+        let dave = { new ImDave with
+                        member x.RecentRamblings() = Seq.ofList ramblings }
         let emailer = { new IEmailGateway with 
                                 member x.Send _ _ subj msg = printfn "%s: %s" subj msg }
 
-        MonadPolice(this._dave, emailer).Surveil()
+        MonadPolice(dave, emailer).Surveil()

@@ -34,3 +34,23 @@ let ``message of each tip of should contain original outburst`` () =
         |> Seq.map (fun x -> x.msg)
         |> Seq.toArray
         |> shouldBe (pickRamblings [1; 3; 4;])
+
+// ---------------------------------------
+
+open MonadPolice
+
+[<Test>]
+let ``test sample`` () =
+    let ramblings =
+        [ "tea?"
+        ; "couldn't we use a monad for that?"
+        ; "anyone for tea?"
+        ; "blah blah blah haskell blah blah monad blah blah"
+        ; "a cup of tea is a lot like the Maybe monad..." 
+        ]
+    let dave = { new ImDave with
+                    member x.RecentRamblings() = Seq.ofList ramblings }
+    let emailer = { new IEmailGateway with 
+                            member x.Send _ _ subj msg = printfn "%s: %s" subj msg }
+
+    sample dave emailer
