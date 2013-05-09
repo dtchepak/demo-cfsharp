@@ -27,9 +27,7 @@ namespace CFSharp.C
         public void Surveil()
         {
             var overheard = _dave.RecentRamblings();
-
             var zealotTalk = overheard.Where(x => x.Contains("monad"));
-
             foreach (var outburstOfZealotry in zealotTalk)
             {
                 _email.Send("xerxesb", "the monad police", "Lack of pragmatism detected", outburstOfZealotry);
