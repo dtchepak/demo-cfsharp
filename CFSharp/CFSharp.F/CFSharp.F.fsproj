@@ -61,10 +61,11 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library1.fs" />
-    <None Include="Script.fsx" />
-    <None Include="packages.config" />
     <None Include="app.config" />
+    <None Include="packages.config" />
+    <Compile Include="TestHelper.fs" />
+    <Compile Include="MonadPolice.fs" />
+    <Compile Include="MonadPoliceTests.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
