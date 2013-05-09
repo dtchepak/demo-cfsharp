@@ -34,3 +34,20 @@ type MonadPoliceTests() =
         (this._emailer |> Received).Send "xerxesb" (Any<string>()) (Any<string>()) ramblings.[3]
         (this._emailer |> Received).Send "xerxesb" (Any<string>()) (Any<string>()) ramblings.[4]
         (this._emailer |> ReceivedWithAnyArgs 3).Send (Any<string>()) (Any<string>()) (Any<string>()) (Any<string>())
+
+    [<Test>]
+    member this.Sample() =
+        let ramblings =
+            [ "tea?"
+            ; "couldn't we use a monad for that?"
+            ; "anyone for tea?"
+            ; "blah blah blah haskell blah blah monad blah blah"
+            ; "a cup of tea is a lot like the Maybe monad..." 
+            ]
+        this._dave.RecentRamblings() |> Returns (Seq.ofList ramblings)
+
+        // Anonymous interface impl using Object Expressions
+        let emailer = { new IEmailGateway with 
+                                member x.Send _ _ subj msg = printfn "%s: %s" subj msg }
+
+        MonadPolice(this._dave, emailer).Surveil()
