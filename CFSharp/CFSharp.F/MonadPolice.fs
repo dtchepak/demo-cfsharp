@@ -3,10 +3,10 @@
 open System.Linq
 
 type IEmailGateway =
-    abstract member Send : string -> string -> string -> string -> unit
+    abstract Send : string -> string -> string -> string -> unit
 
 type ImDave =
-    abstract member RecentRamblings : unit -> string seq // or Seq<string>
+    abstract RecentRamblings : unit -> string seq // or Seq<string>
     
 type MonadPolice(dave : ImDave, email : IEmailGateway) = 
     let _dave = dave
