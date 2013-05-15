@@ -36,6 +36,19 @@ let ``message of each tip of should contain original outburst`` () =
         |> shouldBe (pickRamblings [1; 3; 4;])
 
 // ---------------------------------------
+open FsCheck
+open FSharpx.Strings
+
+let propSendToXerx (ramblings:string list) =
+    printf "%s" (String.concat "," ramblings)
+    let tipoffs = surveil ramblings
+    tipoffs |> Seq.forall (fun x -> x.sendTo = "1xerxesb")
+
+[<Test>]
+let checkProps() = Check.Quick propSendToXerx
+
+
+// ---------------------------------------
 
 open MonadPolice
 
