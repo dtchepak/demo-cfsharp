@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using Shouldly;
 
@@ -63,6 +64,34 @@ namespace CFSharp.C
         public void TestSum()
         {
             Sum(1)(2)(3)(4).ShouldBe(10);
+        }
+
+        [Test]
+        public void UseLambda()
+        {
+            var list = new[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+            var result = list.Where(x => x%2 == 0);
+
+            Console.WriteLine(string.Join(", ", result));
+        }
+
+        private static string Describe(string language)
+        {
+            string description;
+            if (language == "C#") {
+                description = "nice";
+            } else if (language == "F#") {
+                description = "awesome";
+            } else if (language == "Haskell") {
+                description = "begone, zealot!";
+            } else description = "I don't know that language"; 
+            return language + ": " + description;
+        }
+
+        [Test]
+        public void TestDescribe()
+        {
+            Describe("Haskell").ShouldBe("Haskell: begone, zealot!");
         }
     }
 }
