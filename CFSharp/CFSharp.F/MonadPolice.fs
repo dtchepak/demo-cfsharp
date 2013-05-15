@@ -14,9 +14,11 @@ type MonadPolice(dave : ImDave, email : IEmailGateway) =
     let _email = email
     member this.Surveil() = 
         let overheard = _dave.RecentRamblings()
-        let zealotTalk = overheard.Where(fun (x:string) -> x.Contains("monad"))
+        let zealotTalk = 
+          overheard.Where(contains "monad")
         for outburstOfZealotry in zealotTalk do
-            _email.Send "xerxesb" "the monad police" "Lack of pragmatism detected" outburstOfZealotry
+            _email.Send "xerxesb" "the monad police" 
+                        "Lack of pragmatism detected" outburstOfZealotry
 
 type MonadPolice_MoreFSharpish(dave : ImDave, email : IEmailGateway) = 
     let _dave = dave

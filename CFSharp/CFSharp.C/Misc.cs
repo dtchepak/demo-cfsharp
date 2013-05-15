@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using Shouldly;
 
 namespace CFSharp.C
 {
@@ -18,6 +19,17 @@ namespace CFSharp.C
         {
             IncCounter();
             IncCounter();
+        }
+
+        public static int Add(int a, int b)
+        {
+            return a + b;
+        }
+
+        [Test]
+        public void TestAdd()
+        {
+            Add(1, 2).ShouldBe(3);
         }
     }
 }
