@@ -3,6 +3,7 @@
 open NUnit.Framework
 open FsUnit
 open System.Linq
+open FSharpx.Strings
 
 let mutable counter = 0
 
@@ -69,8 +70,18 @@ let loops() =
         // ...
         printfn "stuff!"
         counter <- counter+1
-        
 
+let topFsharpComments comments = 
+    comments 
+        |> Seq.filter (contains "F#") 
+        |> Seq.truncate 5
+        |> String.concat "\n"
+
+[<Test>]
+let testTopComments() =
+    let result = topFsharpComments ([1..10] |> Seq.map (sprintf "blah blah F# %d"))
+    printfn "%s" result
+        
 (* conditionals 
    loops
    assignments *)
