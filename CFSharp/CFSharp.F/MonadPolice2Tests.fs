@@ -45,6 +45,7 @@ let propSendToXerx (ramblings:string list) =
     tipoffs |> Seq.forall (fun x -> x.sendTo = "1xerxesb")
 
 [<Test>]
+[<Ignore>]
 let checkProps() = Check.Quick propSendToXerx
 
 

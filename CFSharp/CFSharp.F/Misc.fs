@@ -2,22 +2,20 @@
 
 let mutable counter = 0
 
-let IncCounter() = counter <- counter + 1
+let IncCounter() = 
+    counter <- counter + 1
+    printfn "%d" counter
 
 open NUnit.Framework
 open Shouldly
 
 [<Test>]
 let ``Look ma! Side-effects!``() =
-    printfn "%d" counter
     IncCounter()
     IncCounter()
-    printfn "%d" counter
-
     (* prints:
-        0
-        2
-     *)
+        1
+        2       *)
 
 
 
