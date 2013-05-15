@@ -55,6 +55,22 @@ let describe language =
 let testDescribe() =
     describe "Haskell" |> should equal "Haskell: begone, zealot!"
 
+[<Test>]
+let loops() =
+    let array = [|1; 2; 3; |]
+    for x in array do
+        // ...
+        printfn "%A" x
+    for x = 0 to array.Length do
+        // ...
+        printfn "%A" x
+    let mutable counter = 0
+    while counter < 3 do
+        // ...
+        printfn "stuff!"
+        counter <- counter+1
+        
+
 (* conditionals 
    loops
    assignments *)

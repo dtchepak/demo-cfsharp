@@ -93,5 +93,25 @@ namespace CFSharp.C
         {
             Describe("Haskell").ShouldBe("Haskell: begone, zealot!");
         }
+
+        [Test]
+        public void Loops()
+        {
+            var counter = 0;
+            var array = new[] {1, 2, 3};
+            foreach (var x in array) {
+                // ...
+                Console.WriteLine(x);
+            }
+            for (int i = 0; i < array.Length; i++) {
+                // ...
+                Console.WriteLine(i);
+            }
+            while (counter < 3) {
+                // ...
+                Console.WriteLine("stuff");
+                counter++;
+            }
+        }
     }
 }
