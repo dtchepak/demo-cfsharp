@@ -31,5 +31,16 @@ namespace CFSharp.C
         {
             Add(1, 2).ShouldBe(3);
         }
+
+        public static Func<int, int> CurriedAdd(int a)
+        {
+            return b => a + b;
+        }
+
+        [Test]
+        public void TestCurriedAdd()
+        {
+            CurriedAdd(1)(2).ShouldBe(3);
+        }
     }
 }
