@@ -81,6 +81,15 @@ let topFsharpComments comments =
 let testTopComments() =
     let result = topFsharpComments ([1..10] |> Seq.map (sprintf "blah blah F# %d"))
     printfn "%s" result
+
+open System.IO
+
+let foo fileName = 
+    try
+        use f = File.CreateText fileName
+        f.WriteLine "hi!"
+    with
+        ex -> printfn "something went wrong: %A" ex
         
 (* conditionals 
    loops

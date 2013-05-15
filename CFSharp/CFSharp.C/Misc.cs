@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using Shouldly;
+using System.IO;
 
 namespace CFSharp.C
 {
@@ -111,6 +112,17 @@ namespace CFSharp.C
                 // ...
                 Console.WriteLine("stuff");
                 counter++;
+            }
+        }
+
+        private static void Foo(string fileName) {
+            try {
+                using (var f = File.CreateText(fileName)) {
+                    f.WriteLine("hi!");
+                }
+            }
+            catch (Exception ex) {
+                Console.WriteLine("something went wrong: {0}", ex);
             }
         }
     }
