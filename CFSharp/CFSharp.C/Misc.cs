@@ -105,7 +105,7 @@ namespace CFSharp.C
             }
             for (int i = 0; i < array.Length; i++) {
                 // ...
-                Console.WriteLine(i);
+                Console.WriteLine(array[i]);
             }
             while (counter < 3) {
                 // ...

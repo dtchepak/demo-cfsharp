@@ -61,9 +61,9 @@ let loops() =
     for x in array do
         // ...
         printfn "%A" x
-    for x = 0 to array.Length do
+    for x = 0 to array.Length-1 do
         // ...
-        printfn "%A" x
+        printfn "%d" array.[x]
     let mutable counter = 0
     while counter < 3 do
         // ...
