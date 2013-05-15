@@ -14,6 +14,10 @@ let ``Look ma! Side-effects!``() =
     IncCounter()
     printfn "%d" counter
 
+    (* prints:
+        0
+        2
+     *)
 
 
 
