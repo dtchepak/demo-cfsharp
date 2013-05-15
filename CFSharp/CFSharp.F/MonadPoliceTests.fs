@@ -33,7 +33,7 @@ type MonadPoliceTests() =
         (this._emailer |> Received).Send "xerxesb" (Any<string>()) (Any<string>()) ramblings.[1]
         (this._emailer |> Received).Send "xerxesb" (Any<string>()) (Any<string>()) ramblings.[3]
         (this._emailer |> Received).Send "xerxesb" (Any<string>()) (Any<string>()) ramblings.[4]
-        (this._emailer |> ReceivedWithAnyArgs 3).Send (Any<string>()) (Any<string>()) (Any<string>()) (Any<string>())
+        (this._emailer |> ReceivedWithAnyArgs 3).Send null null null null
 
     [<Test>]
     member this.Sample() =

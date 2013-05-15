@@ -18,6 +18,6 @@ let wasReceived (call:unit ->unit) : unit =
 let Any<'a>() = Arg.Any<'a>()
 
 let ReceivedWithAnyArgs<'a when 'a : not struct> times (sub:'a) =
-    NSubstitute.SubstituteExtensions.Received(sub, times) 
+    NSubstitute.SubstituteExtensions.ReceivedWithAnyArgs(sub, times) 
 
 let inline shouldBe expected actual = ShouldBeTestExtensions.ShouldBe(actual, expected)
