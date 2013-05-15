@@ -6,7 +6,7 @@ namespace CFSharp.C
 {
     public class Misc
     {
-        static int counter = 0;
+        private static int counter = 0;
 
         private static void IncCounter()
         {
@@ -32,7 +32,7 @@ namespace CFSharp.C
             Add(1, 2).ShouldBe(3);
         }
 
-        public static Func<int, int> CurriedAdd(int a)
+        public static Func<int, int> CAdd(int a)
         {
             return b => a + b;
         }
@@ -40,7 +40,29 @@ namespace CFSharp.C
         [Test]
         public void TestCurriedAdd()
         {
-            CurriedAdd(1)(2).ShouldBe(3);
+            CAdd(1)(2).ShouldBe(3);
+        }
+
+        private static int CAddOne(int b)
+        {
+            return CAdd(1)(b);
+        }
+
+        [Test]
+        public void TestCurriedAddOne()
+        {
+            CAddOne(2).ShouldBe(3);
+        }
+
+        private static Func<int, Func<int, Func<int, int>>> Sum(int a)
+        {
+            return b => c => d => a + b + c + d;
+        }
+        
+        [Test]
+        public void TestSum()
+        {
+            Sum(1)(2)(3)(4).ShouldBe(10);
         }
     }
 }
