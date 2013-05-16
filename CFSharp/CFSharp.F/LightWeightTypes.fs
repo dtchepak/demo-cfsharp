@@ -53,3 +53,12 @@ let testParseInt() =
 let testParsedOk() =
     (parseInt "123").parsedOk |> should equal true
     (parseInt "bob").parsedOk |> should equal false
+
+
+type String with
+    member this.parseInt() =
+        parseInt this
+
+[<Test>]
+let testParseOnString() =
+    "123".parseInt() |> should equal (Parsed 123)
