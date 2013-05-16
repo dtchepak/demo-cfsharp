@@ -90,6 +90,21 @@ let foo fileName =
         f.WriteLine "hi!"
     with
         ex -> printfn "something went wrong: %A" ex
+
+let commentsFor lang = [| "blah blah " + lang + " blah"; "something " + lang; "foo blah " + lang; |]
+let commentsForLanguages languages =
+    seq {
+        for lang in languages do
+        for comments in commentsFor lang do
+        if contains "blah" comments then
+            yield lang + ": " + comments
+    }
+
+[<Test>]
+let testCommentsForLanguages() =
+    let langs = [| "C#"; "F#" |]
+    let result = String.concat "\n" (commentsForLanguages langs)
+    printfn "%s" result
         
 (* conditionals 
    loops

@@ -131,6 +131,31 @@ namespace CFSharp.C
             return string.Join("\n", top);
         }
 
+        private static IEnumerable<string> CommentsForLanguages(IEnumerable<string> languages)
+        {
+            return
+                from lang in languages
+                from comments in CommentsFor(lang)
+                where comments.Contains("blah")
+                select lang + ": " + comments;
+
+        }
+
+        private static IEnumerable<string> CommentsFor(string lang)
+        {
+            return new[] {
+                "blah blah " + lang + " blah", 
+                "something " + lang,
+                "foo blah " + lang
+            };
+        }
+
+        [Test]
+        public void TestCommentsForLanguages()
+        {
+            Console.WriteLine(string.Join("\n", CommentsForLanguages(new[] {"C#", "F#"})));
+        }
+
         private static void Foo(string fileName) {
             try {
                 using (var f = File.CreateText(fileName)) {
