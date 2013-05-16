@@ -96,7 +96,7 @@ let commentsForLanguages languages =
     seq {
         for lang in languages do
         for comments in commentsFor lang do
-        if contains "blah" comments then
+        if comments |> contains "blah" then
             yield lang + ": " + comments
     }
 
