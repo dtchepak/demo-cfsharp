@@ -21,8 +21,8 @@ type ParseResult<'a> =
     | Failed of string
     member this.parsed =
         match this with 
-            | Parsed _ -> true
-            | _        -> false
+        | Parsed _ -> true
+        | _        -> false
 
 let parseInt' s =
     let (parsed, result) = Int32.TryParse s
@@ -30,10 +30,26 @@ let parseInt' s =
 
 let parseInt s =
     match Int32.TryParse s with
-        | (false, _)     -> Failed ("could not parse int from " + s)
+        | (false, _)     -> Failed ("could not parse " + s)
         | (true, result) -> Parsed result
 
+let parsedOk p =
+    match p with
+    | Parsed _ -> true
+    | _        -> false
+
+let shouldFailWith s p =
+    match p with
+    | Failed s' -> s' |> should equal s
+    | _ -> Assert.Fail("expected Failed but got Parsed")
+
 [<Test>]
-let testParse() =
+let testParseInt() =
     parseInt "123" |> should equal (Parsed 123)
-    (parseInt "bob").parsed |> should equal false
+    parseInt "bob" |> shouldFailWith "could not parse bob"
+    Assert.AreEqual(Failed "could not parse bob", parseInt "bob")
+
+[<Test>]
+let testParsedOk() =
+    parseInt "123" |> parsedOk |> should equal true
+    (parseInt "bob") |> parsedOk |> should equal false
