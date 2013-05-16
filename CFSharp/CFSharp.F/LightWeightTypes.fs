@@ -19,7 +19,7 @@ let trafficInstruction light =
 type ParseResult<'a> = 
     | Parsed of 'a 
     | Failed of string
-    member this.parsed =
+    member this.parsedOk =
         match this with 
         | Parsed _ -> true
         | _        -> false
@@ -51,5 +51,5 @@ let testParseInt() =
 
 [<Test>]
 let testParsedOk() =
-    parseInt "123" |> parsedOk |> should equal true
-    (parseInt "bob") |> parsedOk |> should equal false
+    (parseInt "123").parsedOk |> should equal true
+    (parseInt "bob").parsedOk |> should equal false
