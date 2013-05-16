@@ -105,6 +105,15 @@ let testCommentsForLanguages() =
     let langs = [| "C#"; "F#" |]
     let result = String.concat "\n" (commentsForLanguages langs)
     printfn "%s" result
+
+[<Test>]
+let multipleReturns() =
+    let printResult = printfn "%A: %d"
+    let (worked, result) = System.Int32.TryParse "23"
+    printResult worked result
+
+    let (worked1, result2) = System.Int32.TryParse "bob"
+    printResult worked1 result2
         
 (* conditionals 
    loops
