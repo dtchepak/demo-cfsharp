@@ -166,5 +166,16 @@ namespace CFSharp.C
                 Console.WriteLine("something went wrong: {0}", ex);
             }
         }
+
+        [Test]
+        public void ParseExample()
+        {
+            string s = "bob";
+            int result;
+            if (Int32.TryParse(s, out result))
+            {
+                //use result
+            }
+        }
     }
 }

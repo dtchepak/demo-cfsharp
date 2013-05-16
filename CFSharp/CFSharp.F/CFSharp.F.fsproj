@@ -73,6 +73,7 @@
     <Compile Include="MonadPolice2.fs" />
     <Compile Include="MonadPolice2Tests.fs" />
     <Compile Include="Misc.fs" />
+    <Compile Include="LightWeightTypes.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
