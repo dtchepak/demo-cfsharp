@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using Shouldly;
@@ -113,6 +114,21 @@ namespace CFSharp.C
                 Console.WriteLine("stuff");
                 counter++;
             }
+        }
+
+        private static string TopFsharpComments(IEnumerable<string> comments)
+        {
+            var top = comments
+                .Where(x => x.Contains("F#"))
+                .Take(5);
+            return string.Join("\n", top);
+        }
+
+        private static string TopFsharpComments2(IEnumerable<string> comments)
+        {
+            var filtered = comments .Where(x => x.Contains("F#"));
+            var top = filtered.Take(5);
+            return string.Join("\n", top);
         }
 
         private static void Foo(string fileName) {
